@@ -168,11 +168,6 @@
                         $("#grand-total").text(e.subTotal);
                         $("#cart-count").text(e.count);
                         $("#cart-row-"+key).remove();
-                        if(e.carts=='')
-                        {
-                            
-                            $(".checkout-btn").hide();
-                        }
                     });
                 })
             }else{

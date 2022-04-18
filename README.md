@@ -1,2 +1,2 @@
-# ebazar-client
-ebazar Client Back-End
+# mybazar-client
+My Bazar Client Back-End
