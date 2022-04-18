@@ -191,7 +191,6 @@ class ProductController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:200'],
                 'category_id' => ['required'],
-                'seller_id' => ['required'],
                 'unit' => ['required'],
                 'minimum_qty' => ['required'],
                 'quantity' => ['required'],
@@ -227,7 +226,7 @@ class ProductController extends Controller
             }
             $data = $request->only([
                 'name', 'category_id', 'brand_id', 'barcode', 'unit', 'minimum_qty', 'tags', 'is_refundable', 'colors', 'attributes',
-                'unit_price', 'slug', 'sku', 'shipping_cost', 'size', 'seller_id',
+                'unit_price', 'slug', 'sku', 'shipping_cost', 'size',
                 'purchase_price', 'discount', 'quantity', 'description', 'meta_title', 'meta_description', 'is_active', 'publish_stat'
             ]);
             if ($request->input('attributes') != '') {
@@ -374,7 +373,6 @@ class ProductController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:200'],
                 'category_id' => ['required'],
-                'seller_id' => ['required'],
                 'unit' => ['required'],
                 'minimum_qty' => ['required'],
                 'quantity' => ['required'],
@@ -401,7 +399,7 @@ class ProductController extends Controller
                 $data = $request->only([
                     'name', 'category_id', 'brand_id', 'barcode', 'sku', 'unit', 'minimum_qty', 'tags', 'is_refundable', 'colors', 'attributes',
                     'unit_price', 'purchase_price', 'discount', 'quantity', 'description', 'meta_title', 'meta_description', 'is_active',
-                    'publish_stat', 'shipping_cost', 'size', 'seller_id'
+                    'publish_stat', 'shipping_cost', 'size'
                 ]);
                 if (empty($data['meta_title']))
                     $data['meta_title'] = $data['name'];

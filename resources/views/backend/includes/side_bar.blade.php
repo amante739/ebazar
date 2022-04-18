@@ -309,7 +309,7 @@
             @endif
             @if(Module::has('SellerManagement') && Module::find('SellerManagement')->isEnabled())
                 @if(auth()->user()->can('browse_seller_management') || auth()->user()->hasRole('super-admin'))
-                    <li class="@if(Request::is('admin/sellers','admin/seller_commission','admin/sellers/*')) active  @endif">
+                    <!-- <li class="@if(Request::is('admin/sellers','admin/seller_commission','admin/sellers/*')) active  @endif">
                         <a href="#"><span class="icon"><svg viewBox="0 0 24 23" xmlns="http://www.w3.org/2000/svg"><path
                                                             d="M23.6201 9.64488L12.7113 0.263681C12.3019 -0.0878938 11.6978 -0.0878938 11.2885 0.263681L0.37962 9.64488C-0.0777224 10.0379 -0.128669 10.7266 0.264 11.1834C0.656669 11.6404 1.34635 11.6912 1.80209 11.2993L11.9999 2.52951L22.1977 11.2993C22.4035 11.4764 22.6561 11.5628 22.9082 11.5628C23.2151 11.5628 23.5202 11.4341 23.7358 11.1833C24.1284 10.7266 24.0775 10.0378 23.6201 9.64488Z"/><path
                                                             d="M8.93802 22.3629V19.6924L8.34375 22.3629H8.93802Z"/><path
@@ -324,7 +324,6 @@
                                           stroke-linecap="round"/>
                                 </svg></span>
                         </a>
-                        <!-- Sub Manu Start -->
 
                         <ul>
                             <li>
@@ -338,8 +337,9 @@
                                 </a>
                             </li>
                         </ul>
-                        <!-- Sub Manu End -->
-                    </li>@endif
+                        
+                    </li> -->
+                @endif
             @endif
             @if(auth()->user()->can('browse_content_management') || auth()->user()->hasRole('super-admin'))
                 <li class="@if(Request::is('admin/banners','admin/banners/*','admin/product_review','admin/product_review/*')) active  @endif">
@@ -536,7 +536,7 @@
                     <!-- Sub Manu End -->
                 </li>@endif
             @if(auth()->user()->can('browse_payment_gateway') || auth()->user()->hasRole('super-admin'))
-                    <li>
+                    <!-- <li>
                         <a class="@if(Request::is('admin/payment_gateway')) active @endif"
                            href="{{route('backend.payment_gateway.index')}}">
                         <span class="icon"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -547,7 +547,7 @@
                     </span>
                             <span class="title">  {{ __('Payment Gateway') }} </span>
                         </a>
-                    </li>
+                    </li> -->
                 @endif
         </ul>
     </div>

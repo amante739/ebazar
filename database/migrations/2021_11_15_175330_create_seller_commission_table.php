@@ -15,7 +15,7 @@ class CreateSellerCommissionTable extends Migration
     {
         Schema::create('seller_commissions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('seller_id');
+            $table->unsignedBigInteger('seller_id')->nullable();
             $table->string('seller_commission');
             $table->string('remarks')->nullable();
             $table->timestamps();

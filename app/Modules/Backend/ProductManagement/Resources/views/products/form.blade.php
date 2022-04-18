@@ -191,9 +191,9 @@
                 </div>
             </div>
             @if(auth()->user()->getRoleNames()->first()=='Seller')
-                <input type="hidden" name="seller_id" value="{{auth()->id()}}">
+                <!-- <input type="hidden" name="seller_id" value="{{auth()->id()}}"> -->
             @else
-                <div class="col-lg-2">
+                <!-- <div class="col-lg-2">
                     <p>{{__('Seller')}} <span class="text-red">*</span></p>
                 </div>
                 <div class="col-lg-4">
@@ -210,7 +210,7 @@
                         <label class="error " id="seller_id-error" for="seller_id">{{ $message }}</label>
                         @enderror
                     </div>
-                </div>
+                </div> -->
             @endif
 
         </div>
