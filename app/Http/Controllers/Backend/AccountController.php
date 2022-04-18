@@ -19,7 +19,6 @@ class AccountController extends Controller
     public function show()
     {
         $user = Auth::user();
-
         return view('backend.pages.account.index', compact('user'));
     }
 
