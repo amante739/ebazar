@@ -151,8 +151,9 @@ class CartController extends Controller
 
         Cookie::queue(Cookie::make('subTotal',$subTotal,120));
         Cookie::queue(Cookie::make('totalShipping',120));
+        
 
-        return response(['status'=>'success','count'=>$count,'name'=>$product->name,'subTotal'=>$subTotal,'totalShipping'=>$totalShipping]);
+        return response(['status'=>'success','count'=>$count,'name'=>$product->name,'subTotal'=>$subTotal,'totalShipping'=>$totalShipping, 'carts' => $cart]);
     }
 
 //    public function price($id)
