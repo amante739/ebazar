@@ -171,7 +171,7 @@
                         if(e.carts=='')
                         {
                             
-                            $(".checkout-btn").hide();
+// $(".checkout-btn").hide();
                         }
                     });
                 })
