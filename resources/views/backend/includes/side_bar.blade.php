@@ -473,10 +473,10 @@
                                 </li>
                             @endif
                             @if(auth()->user()->can('browse_permissions') || auth()->user()->hasRole('super-admin'))
-                                <li>
+                                <!-- <li>
                                     <a class="@if(Request::is('admin/permissions','admin/permissions/*'))active @endif"
                                        href="{{route('backend.permissions.index')}}">{{__('Permission')}}</a>
-                                </li>
+                                </li> -->
                             @endif
                         </ul>
                         <!-- Sub Manu End -->

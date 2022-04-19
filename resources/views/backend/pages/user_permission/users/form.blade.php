@@ -58,18 +58,19 @@
     </div>
     <div class="col-lg-7">
         <div class="input-group">
-            <select name="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" required>
+            <select name="role[]" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }} select2" required multiple="multiple">
                 <option value="">{{ __('Select Role') }}</option>
                 @foreach($roles as $key => $role)
-                    <option value="{{$role->name}}"
-                            @if($user->hasRole($role->name)) selected @endif >{{$role->name}}</option>
+                    <option value="{{$role->id}}" @if($user->hasRole($role->name)) selected @endif >{{$role->name}}</option>
                 @endforeach
             </select>
             @error('role')
             <div class="invalid-feedback">{{$message}}</div>
             @enderror
-        </div>
-    </div> <div class="col-lg-3">
+            </div>
+    </div>
+
+    <div class="col-lg-3">
         <p>{{__('User Image')}}</p>
     </div>
     <div class="col-lg-7">
@@ -96,9 +97,10 @@
             "use strict";
 
             $(document).ready(function () {
-
                 $("#usersForm").validate();
-
+                $('.select2').select2({
+                    tags: true
+                });
             });
 
             function readURL(input) {

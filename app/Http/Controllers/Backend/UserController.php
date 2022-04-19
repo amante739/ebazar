@@ -68,20 +68,31 @@ class UserController extends Controller
             ->take($rowperpage)
             ->get();
 
+        // $userRole = $records->roles->pluck('name', 'name')->all();
+
         $data_arr = array();
 
         foreach ($records as $key => $record) {
+            $role_data = [];
             $checked = '';
             if ($record->is_active)
                 $checked = 'checked';
             $image = '<img src="' . URL::to('uploads/users/'.$record->avatar) . '" width="60px" height="60px" alt="product">';
+
+            if(!empty($record->getRoleNames()))
+            {
+                foreach($record->getRoleNames() as $value)
+                {
+                    $role_data[] = ' <span class="badge-success">'.$value.'</span>';
+                }
+            }
 
             $data_arr[] = array(
                 "id" => $record->id,
                 "name" => $record->name,
                 "email" => $record->email,
                 "avatar" => $image,
-                "role" => $record->roles()->first()->name ?? '',
+                "role" => $role_data ?? '',
                 "is_active" => '<div class="form-switch"><input class="form-check-input status" type="checkbox"
                                 data-id="' . $record->id . '"' . $checked . '></div>',
                 "action" => '<ul>
@@ -175,8 +186,9 @@ class UserController extends Controller
                 'created_type' => 1,
             ]);
             if ($user) {
-                $role = Role::where('name', $request->input('role'))->where('guard_name', 'admin')->first();
-                $user->assignRole($role);
+                // $role = Role::where('name', $request->input('role'))->where('guard_name', 'admin')->first();
+                // $user->assignRole($role);
+                $user->syncRoles($request->input('role'));
                 return redirect()->route('backend.users.index')->with($this->create_success_message);
             } else {
                 return back()->withInput() > with($this->create_fail_message);
@@ -273,8 +285,10 @@ class UserController extends Controller
                     }
                 }
                 $user->update($data);
-                $role = Role::where('name', $request->input('role'))->where('guard_name', 'admin')->first();
-                $user->assignRole($role);
+                
+                // $role = Role::where('name', $request->input('role'))->where('guard_name', 'admin')->first();
+                // $user->assignRole($role);
+                $user->syncRoles($request->input('role'));
 
                 return redirect()->route('backend.users.index')->with($this->update_success_message);
             } else {

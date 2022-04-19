@@ -14,12 +14,12 @@
                 @if(url()->full()!=route('backend.roles.index')) onclick="location.href='{{route('backend.roles.index')}}'" @endif
         >{{__('Roles')}}
         </button>
-        <button class="nav-link @if(Request::is('admin/permissions','admin/permissions/*'))active @endif" id="permission-tab"
+        <!-- <button class="nav-link @if(Request::is('admin/permissions','admin/permissions/*'))active @endif" id="permission-tab"
                 data-bs-toggle="tab" data-bs-target="#permission" type="button" role="tab" aria-controls="permission"
                 aria-selected="false"
                 @if(url()->full()!=route('backend.permissions.index')) onclick="location.href='{{route('backend.permissions.index')}}'" @endif
         >{{__('Permission')}}
-        </button>
+        </button> -->
     </div>
     <!-- Tab Manu End -->
 </div>

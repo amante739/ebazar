@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Traits\ResponseMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Mockery\CountValidator\Exception;
@@ -121,8 +122,9 @@ class RoleController extends Controller
     public function create()
     {
         $role = new Role();
+        $permissiontypes = Permission::where('guard_name','admin')->distinct()->get('type');
         $permissions = Permission::where('guard_name','admin')->get();
-        return view('backend.pages.user_permission.roles.create', compact('role', 'permissions'));
+        return view('backend.pages.user_permission.roles.create', compact('role', 'permissiontypes', 'permissions'));
     }
 
     /**
@@ -199,8 +201,15 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
         if ($role) {
-            $permissions = Permission::where('guard_name',$role->guard_name)->get();
-            return view('backend.pages.user_permission.roles.edit', compact('role', 'permissions'));
+            $permissiontypes = Permission::where('guard_name', $role->guard_name)->distinct()->get('type');
+            $permissions = Permission::where('guard_name', $role->guard_name)->get();
+            $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
+            ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
+            ->all();
+            foreach ($permissions as $value) {
+                in_array($value->id, $rolePermissions) ? $value['checked'] = 'checked' : $value['checked'] = 'checked';
+            }
+            return view('backend.pages.user_permission.roles.edit', compact('role', 'permissiontypes', 'permissions', 'rolePermissions'));
         } else {
             return redirect()->back()->withInput()->with($this->not_found_message);
         }
@@ -217,7 +226,8 @@ class RoleController extends Controller
     {
         try {
             $request->validate([
-                'name' => 'required|unique:roles,name,' . $id
+                'name' => 'required|unique:roles,name,' . $id,
+                'permissions'  => 'required'
             ]);
             $role = Role::find($id);
             if ($role) {
