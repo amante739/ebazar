@@ -10,15 +10,17 @@
                     <h4>{{__('Promotion Information')}}</h4>
                 </div>
                 <div class="container">
-                <form class="add-brand-form" id="promo_productsForm"  action="@auth('admin'){{route('backend.promotional_products.store')}}@elseauth('seller'){{route('seller.promotional_products.store')}}@endauth" method="post" enctype="multipart/form-data">
-                    @csrf
-                    @include('productmanagement::promotional_products.form')
-                    <div class="col-lg-7 offset-3">
-                        <div class="from-submit-btn">
-                            <button class="submit-btn" type="submit">{{__('Save')}}</button>
+                    @if(auth()->user()->can('create_promotional_products') || auth()->user()->hasRole('super-admin'))
+                    <form class="add-brand-form" id="promo_productsForm"  action="@auth('admin'){{route('backend.promotional_products.store')}}@elseauth('seller'){{route('seller.promotional_products.store')}}@endauth" method="post" enctype="multipart/form-data">
+                        @csrf
+                        @include('productmanagement::promotional_products.form')
+                        <div class="col-lg-7 offset-3">
+                            <div class="from-submit-btn">
+                                <button class="submit-btn" type="submit">{{__('Save')}}</button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                    @endif
                 </div>
             </div>
         </div>

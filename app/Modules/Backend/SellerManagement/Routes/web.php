@@ -17,6 +17,7 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.'], function () {
         Route::get('seller_list', [SellerController::class, 'sellerList'])->name('seller.list');
         Route::get('seller/changeStatus', [SellerController::class, 'changeStatus']);
         Route::get('seller/approve', [SellerController::class, 'approve']);
+        
         Route::group(['middleware' => ['check_permission']], function () {
             Route::resource('sellers', 'SellerController');
         });

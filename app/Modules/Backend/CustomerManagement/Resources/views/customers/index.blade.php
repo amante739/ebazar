@@ -13,10 +13,11 @@
                     <div class="row">
                         <div class="col">
                             <div class="float-md-end">
+                                @if(auth()->user()->can('create_customers') || auth()->user()->hasRole('super-admin'))
                                 <a href="@auth('admin'){{route('backend.customers.create')}}@elseauth('seller'){{route('seller.customers.create')}}@endauth">
                                     <button class="btn btn-warning pull-right"> {{ __('Add Customer') }}</button>
                                 </a>
-
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -42,6 +43,7 @@
             </div>
         </div>
         <!-- Tab Content End -->
+        @if(auth()->user()->can('email_customers') || auth()->user()->hasRole('super-admin'))
         <!-- modal content -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -71,6 +73,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 @endsection
 

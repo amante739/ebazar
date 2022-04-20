@@ -14,11 +14,11 @@
                 @if(url()->full()!=route('backend.customer_report')) onclick="location.href='{{route('backend.customer_report')}}'" @endif
         >{{__('Customer Report')}}
         </button>
-        <button class="nav-link @if(Request::is('admin/seller_report'))active @endif" id="seller-report-tab" data-bs-toggle="tab" data-bs-target="#seller-report"
+        <!-- <button class="nav-link @if(Request::is('admin/seller_report'))active @endif" id="seller-report-tab" data-bs-toggle="tab" data-bs-target="#seller-report"
                 type="button" role="tab" aria-controls="seller-report" aria-selected="false"
                 @if(url()->full()!=route('backend.seller_report')) onclick="location.href='{{route('backend.seller_report')}}'" @endif
         >{{__('Seller Report')}}
-        </button>
+        </button> -->
     </div>
     <!-- Tab Manu End -->
 </div>

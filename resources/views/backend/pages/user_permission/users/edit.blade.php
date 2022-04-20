@@ -9,6 +9,7 @@
                     <h4>{{__('User Information')}}</h4>
                 </div>
                 <div class="container">
+                    @if(auth()->user()->can('edit_users') || auth()->user()->hasRole('super-admin'))
                     <form id="usersForm" class="add-brand-form" action="{{route('backend.users.update',$user->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -19,6 +20,7 @@
                             </div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

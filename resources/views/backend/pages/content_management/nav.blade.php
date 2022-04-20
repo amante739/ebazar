@@ -16,12 +16,12 @@
         </button>
     @endif
     @if(auth()->user()->can('browse_product_review') || auth()->user()->hasRole('super-admin'))
-        <button class="nav-link @if(Request::is('admin/product_review'))active @endif" id="product-review-tab"
+        <!-- <button class="nav-link @if(Request::is('admin/product_review'))active @endif" id="product-review-tab"
                 data-bs-toggle="tab"
                 data-bs-target="#product-review" type="button" role="tab" aria-controls="product-review"
                 aria-selected="true"
                 @if(url()->full()!=$product_review_index_route) onclick="location.href='{{$product_review_index_route}}'" @endif
         >{{__('Product Review')}}
-        </button>
+        </button> -->
     @endif
 </div>

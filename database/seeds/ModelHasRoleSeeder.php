@@ -14,20 +14,20 @@ class ModelHasRoleSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '1'],
-            ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '2'],
-            ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '3'],
-            ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '4'],
-            ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '5'],
-        ];
+        // $data = [
+        //     ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '1'],
+        //     ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '2'],
+        //     ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '3'],
+        //     ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '4'],
+        //     ['7', 'App\\Modules\\Backend\\SellerManagement\\Entities\\Seller', '5'],
+        // ];
 
-        foreach($data as $d){
-            DB::table('model_has_roles')->insert([
-                'role_id' => $d[0],
-                'model_type'=>$d[1],
-                'model_id'=>$d[2],
-            ]);
-        }
+        // foreach($data as $d){
+        //     DB::table('model_has_roles')->insert([
+        //         'role_id' => $d[0],
+        //         'model_type'=>$d[1],
+        //         'model_id'=>$d[2],
+        //     ]);
+        // }
     }
 }

@@ -2,12 +2,15 @@
     <div class="body-overlay"></div>
     <!-- header  -->
     <!-- Page Content  -->
+    
+    @if(auth()->user()->can('browse_dashboard') || auth()->user()->hasRole('super-admin'))
     <div id="content" class="maan-rightside-content">
         <div class="maan-main-content">
             <div class="maan-state-overview maan-layout-style-one">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
+                            @if(auth()->user()->can('browse_count_box_dashboard') || auth()->user()->hasRole('super-admin'))
                             <div class="maan-counter-wpr grid-4">
                                 <div class="maan-counter-box">
                                     <div class="maan-icon maan-radius maan-icon-clr-lightblue">
@@ -63,18 +66,19 @@
                                     </div>
                                     <div class="maan-desc">
                                         <div class="maan-counter">
-                                                <span
-                                                    class="maan-counter-title timer">{{$order_overview['7']??0}}</span>
+                                                <span class="maan-counter-title timer">{{$order_overview['7']??0}}</span>
                                         </div>
                                         <p class="maan-counter-content">{{__('Cancel Order')}}</p>
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-xxl-7 col-xl-12">
+                            @if(auth()->user()->can('browse_statistic_dashboard') || auth()->user()->hasRole('super-admin'))
                             <div class="maan-content-wpr">
                                 <div class="maan-card-header maan-chart-radius">
                                     <h3 class="maan-chart-title">{{__('Monthly Sale Status')}}</h3>
@@ -90,17 +94,17 @@
                                     @include('backend.pages._monthly_sale')
                                 </div>
                             </div>
+                            @endif
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="maan-content-wrapper  pyechart-xl grid-2">
                                         <div class="maan-content-wpr">
+                                            @if(auth()->user()->can('browse_statistic_dashboard') || auth()->user()->hasRole('super-admin'))
                                             <div class="maan-card-header maan-appoint-header-bg3 maan-chart-radius">
                                                 <h3 class="maan-chart-title">{{__('Yearly Status by Category')}}</h3>
                                                 <div class="card-dropdown">
                                                     <div class="card-dropdown" id="category_month">
-                                                        <input type="month" id="start" name="start" class="month"
-                                                               min="2021-10" max="<?= date('Y-m'); ?>"
-                                                               value="<?= date('Y-m'); ?>">
+                                                        <input type="month" id="start" name="start" class="month" min="2021-10" max="<?= date('Y-m'); ?>" value="<?= date('Y-m'); ?>">
 
                                                     </div>
                                                 </div>
@@ -114,45 +118,49 @@
                                                         @include('backend.pages._monthly_category_status')
                                                     </div>
                                                 </div>
-
                                             </div>
+                                            @endif
                                         </div>
+                                        @if(auth()->user()->can('browse_customer_dashboard') || auth()->user()->hasRole('super-admin'))
                                         <div class="maan-content-wpr dashboard-topnew-customer">
                                             <div
                                                 class="maan-card-header maan-appoint-header-bg2 maan-chart-radius text-center">
                                                 <h3 class="maan-chart-title">{{__('Top New Customer')}}</h3>
                                             </div>
                                             @foreach($new_customers as $key => $customer)
-                                                <div class="maan-note-card-body">
-                                                    <div class="dash-customar-author">
-                                                        @if($customer->image)
-                                                            <img src="{{URL::to('/frontend/img/users/'.$customer->image)}}" alt="">
-                                                        @else
-                                                            <div class="p-3 useridname">{{strtoupper(mb_substr($customer->first_name, 0, 1).mb_substr($customer->last_name, 0, 1))}}</div>
-                                                        @endif
-                                                        <div>
-                                                            <p>{{$customer->email??''}}</p>
-                                                            <h6>{{$customer->full_name()??''}}</h6>
-                                                        </div>
-                                                    </div>
-                                                    <div class="invoice">
-                                                        <a href="{{route('backend.orders.show',$customer->orders->first()->id??'#')}}">
-                                                            {{$customer->orders->first()->order_no??''}}
-                                                        </a>
-                                                    </div>
-                                                    <div class="date">
-                                                        <p>{{date('Y-m-d',strtotime($customer->created_at))}}
-                                                            <br>
-                                                        {{date('H:i A',strtotime($customer->created_at))}}
-                                                        </p>
+                                            <div class="maan-note-card-body">
+                                                <div class="dash-customar-author">
+                                                    @if($customer->image)
+                                                        <img src="{{URL::to('/frontend/img/users/'.$customer->image)}}" alt="">
+                                                    @else
+                                                        <div class="p-3 useridname">{{strtoupper(mb_substr($customer->first_name, 0, 1).mb_substr($customer->last_name, 0, 1))}}</div>
+                                                    @endif
+                                                    <div>
+                                                        <p>{{$customer->email??''}}</p>
+                                                        <h6>{{$customer->full_name()??''}}</h6>
                                                     </div>
                                                 </div>
+                                                <div class="invoice">
+                                                    <a href="{{route('backend.orders.show',$customer->orders->first()->id??'#')}}">
+                                                        {{$customer->orders->first()->order_no??''}}
+                                                    </a>
+                                                </div>
+                                                <div class="date">
+                                                    <p>{{date('Y-m-d',strtotime($customer->created_at))}}
+                                                        <br>
+                                                    {{date('H:i A',strtotime($customer->created_at))}}
+                                                    </p>
+                                                </div>
+                                            </div>
                                             @endforeach
                                         </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        @if(auth()->user()->can('browse_order_dashboard') || auth()->user()->hasRole('super-admin'))
                         <div class="col-xxl-5 col-xl-12">
                             <div class="maan-content-wpr">
                                 <div class="maan-card-header maan-appoint-header-bg  maan-chart-radius">
@@ -175,46 +183,52 @@
                                 </div>
                             </div>
                         </div>
-                    @auth('admin')
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="maan-content-wpr dashbest-selling-product">
-                                <div class="maan-card-header maan-appoint-header-bg  maan-chart-radius">
-                                    <h3 class="maan-chart-title">{{__('Best Selling Product')}}</h3>
-                                    <div class="card-dropdown" id="product_month">
-                                        <input type="month" id="start" name="start" class="month"
-                                               min="2021-10" max="<?= date('Y-m'); ?>"
-                                               value="<?= date('Y-m'); ?>">
+                        @endif
+                        @auth('admin')
+                        <div class="row">
+                            @if(auth()->user()->can('browse_best_selling_dashboard') || auth()->user()->hasRole('super-admin'))
+                            <div class="col-lg-6">
+                                <div class="maan-content-wpr dashbest-selling-product">
+                                    <div class="maan-card-header maan-appoint-header-bg  maan-chart-radius">
+                                        <h3 class="maan-chart-title">{{__('Best Selling Product')}}</h3>
+                                        <div class="card-dropdown" id="product_month">
+                                            <input type="month" id="start" name="start" class="month"
+                                                min="2021-10" max="<?= date('Y-m'); ?>"
+                                                value="<?= date('Y-m'); ?>">
+
+                                        </div>
+                                    </div>
+                                    <div class="maan-appoint-card-body" id="best_selling_product">
 
                                     </div>
                                 </div>
-                                <div class="maan-appoint-card-body" id="best_selling_product">
-
-                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="maan-content-wpr dashboard-topnew-customer">
-                                <div class="maan-card-header maan-appoint-header-bg3  maan-chart-radius">
-                                    <h3 class="maan-chart-title">{{__('Best Customer')}}</h3>
-                                    <div class="card-dropdown" id="customer_month">
-                                        <input type="month" id="start" name="start" class="month"
-                                               min="2021-10" max="<?= date('Y-m'); ?>"
-                                               value="<?= date('Y-m'); ?>">
+                            @endif
+                            @if(auth()->user()->can('browse_best_customer_dashboard') || auth()->user()->hasRole('super-admin'))
+                            <div class="col-lg-6">
+                                <div class="maan-content-wpr dashboard-topnew-customer">
+                                    <div class="maan-card-header maan-appoint-header-bg3  maan-chart-radius">
+                                        <h3 class="maan-chart-title">{{__('Best Customer')}}</h3>
+                                        <div class="card-dropdown" id="customer_month">
+                                            <input type="month" id="start" name="start" class="month"
+                                                min="2021-10" max="<?= date('Y-m'); ?>"
+                                                value="<?= date('Y-m'); ?>">
+                                        </div>
+                                    </div>
+                                    <div id="best_customer">
+
                                     </div>
                                 </div>
-                                <div id="best_customer">
-
-                                </div>
                             </div>
+                            @endif
                         </div>
-                    </div>
-                    @endauth
+                        @endauth
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @endif
 </div>
 @push('js')
     <script>

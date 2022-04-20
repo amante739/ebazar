@@ -15,18 +15,18 @@ use App\Modules\Backend\CustomerManagement\Http\Controllers\EmailSubscriberContr
 
 Route::group(['prefix' => 'admin', 'as' => 'backend.'], function () {
     Route::group(['middleware' => 'auth:admin,seller'], function () {
-        Route::group(['middleware' => ['check_permission']], function () {
-            Route::get('customer/sendMail', [CustomerController::class, 'sendMail']);
-            Route::get('customer/changeStatus', [CustomerController::class, 'changeStatus']);
-            Route::get('email_subscriber/changeStatus', [EmailSubscriberController::class, 'changeStatus']);
             Route::get('customer_list', [CustomerController::class, 'customerList'])->name('customer.list');
+            Route::get('suspended_customer_list', [CustomerController::class, 'suspendedCustomerList'])->name('suspended_customer.list');
             Route::get('email_subscriber', [EmailSubscriberController::class, 'index'])->name('email_subscriber');
             Route::get('email_subscriber_list', [EmailSubscriberController::class, 'emailSubscriberList'])->name('email_subscriber.list');
-            Route::get('suspended_customer_list', [CustomerController::class, 'suspendedCustomerList'])->name('suspended_customer.list');
+            Route::get('customer/changeStatus', [CustomerController::class, 'changeStatus']);
+            Route::get('customer/sendMail', [CustomerController::class, 'sendMail']);
+            Route::get('email_subscriber/changeStatus', [EmailSubscriberController::class, 'changeStatus']);
             Route::get('suspended_customers', [CustomerController::class, 'suspendedCustomers'])->name('customers.suspended');
             Route::resource('customers', 'CustomerController');
+        // Route::group(['middleware' => ['check_permission']], function () {
 
-        });
+        // });
     });
 });
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

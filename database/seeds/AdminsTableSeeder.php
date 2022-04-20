@@ -38,5 +38,18 @@ class AdminsTableSeeder extends Seeder
             'updated_at'=>'2021-10-03 03:41:55',
             'deleted_at'=>NULL,
         ]);
+        DB::table('admins')->insert([
+            'id' => 3,
+            'name'=>'Viewer',
+            'email'=>'view@view.com',
+            'phone'=>'01xxxxxxx',
+            'password'=>bcrypt('12345678'),
+            'avatar'=>'index.jpeg',
+            'remember_token'=>'4OP3vjDScbnij0NmPgWRMy5Igioqywks24yCxR1PRnUSYY8O4XbkVdMoFOSt',
+            'is_active'=>1,
+            'created_at'=>'2021-06-04 06:17:34',
+            'updated_at'=>'2021-10-03 03:41:55',
+            'deleted_at'=>NULL,
+        ]);
     }
 }

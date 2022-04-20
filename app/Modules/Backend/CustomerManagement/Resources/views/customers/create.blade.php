@@ -10,8 +10,8 @@
                     <h4>{{__('Customer Information')}}</h4>
                 </div>
                 <div class="container">
-                    <form id="customersForm" class="add-brand-form" action="{{route('backend.customers.store')}}" method="post"
-                          enctype="multipart/form-data">
+                    @if(auth()->user()->can('create_customers') || auth()->user()->hasRole('super-admin'))
+                    <form id="customersForm" class="add-brand-form" action="{{route('backend.customers.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @include('customermanagement::customers.form')
                         <div class="col-lg-7 offset-3">
@@ -20,6 +20,7 @@
                             </div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

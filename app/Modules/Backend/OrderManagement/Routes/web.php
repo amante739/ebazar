@@ -24,17 +24,18 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.'], function () {
         Route::get('cancelled_order_list', 'OrderController@cancelledOrderList')->name('cancelled_orders.list');
         Route::put('orders_details', 'OrderController@updateOrderDetails')->name('order_details.update');
 
-        Route::group(['middleware' => ['check_permission']], function () {
-            Route::resource('orders', 'OrderController')->except('create','store', 'edit');
-            Route::get('pending_orders', 'OrderController@pendingOrder')->name('pending_orders');
-            Route::get('confirmed_orders', 'OrderController@confirmedOrder')->name('confirmed_orders');
-            Route::get('processing_orders', 'OrderController@processingOrder')->name('processing_orders');
-            Route::get('picked_orders', 'OrderController@pickedOrder')->name('picked_orders');
-            Route::get('shipped_orders', 'OrderController@shippedOrder')->name('shipped_orders');
-            Route::get('delivered_orders', 'OrderController@deliveredOrder')->name('delivered_orders');
-            Route::get('cancelled_orders', 'OrderController@cancelledOrder')->name('cancelled_orders');
+        Route::resource('orders', 'OrderController')->except('create','store', 'edit');
+        Route::get('pending_orders', 'OrderController@pendingOrder')->name('pending_orders');
+        Route::get('confirmed_orders', 'OrderController@confirmedOrder')->name('confirmed_orders');
+        Route::get('processing_orders', 'OrderController@processingOrder')->name('processing_orders');
+        Route::get('picked_orders', 'OrderController@pickedOrder')->name('picked_orders');
+        Route::get('shipped_orders', 'OrderController@shippedOrder')->name('shipped_orders');
+        Route::get('delivered_orders', 'OrderController@deliveredOrder')->name('delivered_orders');
+        Route::get('cancelled_orders', 'OrderController@cancelledOrder')->name('cancelled_orders');
 
-        });
+        // Route::group(['middleware' => ['check_permission']], function () {
+
+        // });
     });
 });
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

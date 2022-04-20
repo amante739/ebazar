@@ -23,12 +23,14 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.'], function () {
         Route::get('promo_product/changeStatus', 'PromotionalProductController@changeStatus');
         Route::get('category/changeStatus', 'CategoryController@changeStatus');
         Route::get('brand/changeStatus', 'BrandController@changeStatus');
-        Route::group(['middleware' => ['check_permission']], function () {
-            Route::resource('products', 'ProductController')->except(['show']);
-            Route::resource('promotional_products', 'PromotionalProductController')->except('show');
-            Route::resource('categories', 'CategoryController')->except(['show']);
-            Route::resource('brands', 'BrandController')->except(['show']);
-        });
+
+        Route::resource('products', 'ProductController')->except(['show']);
+        Route::resource('promotional_products', 'PromotionalProductController')->except('show');
+        Route::resource('categories', 'CategoryController')->except(['show']);
+        Route::resource('brands', 'BrandController')->except(['show']);
+
+        // Route::group(['middleware' => ['check_permission']], function () {
+        // });
     });
 });
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

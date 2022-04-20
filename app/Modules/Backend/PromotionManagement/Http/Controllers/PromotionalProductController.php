@@ -56,16 +56,16 @@ class PromotionalProductController extends Controller
 
         $query = PromotionalProduct::query();
 
-        if (auth('seller')->user()) {
+        // if (auth('seller')->user()) {
+        //     $query
+        //         ->join('products', 'promotions.product_id', '=', 'products.id')
+        //         ->where('products.seller_id', 'like', '%' . auth()->id() . '%')
+        //         ->select('products.name as product_name', 'promotions.*');
+        // }else{
             $query
                 ->join('products', 'promotions.product_id', '=', 'products.id')
-                ->where('products.seller_id', 'like', '%' . auth()->id() . '%')
                 ->select('products.name as product_name', 'promotions.*');
-        }else{
-            $query
-                ->join('products', 'promotions.product_id', '=', 'products.id')
-                ->select('products.name as product_name', 'promotions.*');
-        }
+        // }
 
 
         // Total records

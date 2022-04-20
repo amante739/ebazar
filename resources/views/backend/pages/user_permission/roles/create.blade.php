@@ -9,6 +9,7 @@
                     <h4>{{__('Role Information')}}</h4>
                 </div>
                 <div class="container">
+                    @if(auth()->user()->can('create_roles') || auth()->user()->hasRole('super-admin'))
                     <form id="rolesForm" method="post" action="{{route('backend.roles.store')}}" enctype="multipart/form-data" class="add-brand-form">
                         @csrf()
                         @include('backend.pages.user_permission.roles.form')
@@ -18,6 +19,7 @@
                             </div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

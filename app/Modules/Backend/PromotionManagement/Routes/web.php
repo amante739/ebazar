@@ -17,9 +17,10 @@ Route::group(['prefix' => 'admin', 'as' => 'backend.'], function () {
         Route::get('promo_product_list', 'PromotionalProductController@promoProductList')->name('promo_product.list');
         Route::get('_products', 'PromotionalProductController@filteredProducts');
         Route::get('promo_product/changeStatus', 'PromotionalProductController@changeStatus');
-        Route::group(['middleware' => ['check_permission']], function () {
-            Route::resource('promotional_products', 'PromotionalProductController')->except('show');
-        });
+
+        Route::resource('promotional_products', 'PromotionalProductController')->except('show');
+        // Route::group(['middleware' => ['check_permission']], function () {
+        // });
     });
 });
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

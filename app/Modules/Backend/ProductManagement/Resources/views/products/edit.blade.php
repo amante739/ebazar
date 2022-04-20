@@ -9,12 +9,13 @@
     <!-- Tab Content Start -->
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="add-product" aria-labelledby="add-product-tab">
+                @if(auth()->user()->can('edit_products') || auth()->user()->hasRole('super-admin'))
                 <form id="productForm" class="add-brand-form" action="@auth('admin'){{route('backend.products.update',$product->id)}}@elseauth('seller'){{route('seller.products.update',$product->id)}}@endauth" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     @include('productmanagement::products.form')
-
                 </form>
+                @endif
             </div>
         </div>
         @endsection

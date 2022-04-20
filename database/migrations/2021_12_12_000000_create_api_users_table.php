@@ -38,6 +38,6 @@ class CreateApiUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('api_users');
     }
 }

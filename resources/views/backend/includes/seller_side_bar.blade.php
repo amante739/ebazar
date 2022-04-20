@@ -298,11 +298,11 @@
                                href="{{route('seller.customer_report')}}">{{ __('Customer Transaction') }}
                             </a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a class="@if(Request::is('seller/seller_report'))active @endif"
                                href="{{route('seller.seller_report')}}">{{ __('Seller info') }}
                             </a>
-                        </li>
+                        </li> -->
                     </ul>
                     <!-- Sub Manu End -->
                 </li>

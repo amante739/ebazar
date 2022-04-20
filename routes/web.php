@@ -49,51 +49,58 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Backend', 'as' => 'backend.']
         Route::get('faq_content_list', 'FaqController@faqContentList')->name('faq_content.list');
         Route::get('currency_list', 'CurrencyController@currencyList')->name('currency.list');
 
+        // Permission check excluded
+        Route::get('/', 'HomeController@index')->name('home');
+        Route::resource('roles', 'RoleController')->except(['show']);
+        Route::resource('users', 'UserController')->except(['show']);
+        
+        Route::get('user/changeStatus', 'UserController@changeStatus');
+        Route::resource('permissions', 'PermissionController')->except(['show']);
+        Route::get('role_permissions', 'RoleController@rolePermissions');
+        
+        /* contents routes */
+        Route::get('banner/changeStatus', 'BannerController@changeStatus');
+        Route::resource('banners', 'BannerController')->except('show');
+        Route::get('product_review/changeStatus', 'ProductReviewController@changeStatus');
+        Route::resource('product_review', 'ProductReviewController')->except('create', 'store');
 
-        Route::group(['middleware' => ['check_permission']], function () {
-            Route::get('/', 'HomeController@index')->name('home');
-            Route::resource('roles', 'RoleController')->except(['show']);
-            Route::get('user/changeStatus', 'UserController@changeStatus');
-            Route::resource('users', 'UserController')->except(['show']);
-            Route::resource('permissions', 'PermissionController')->except(['show']);
-            Route::get('role_permissions', 'RoleController@rolePermissions');
-            /* contents routes */
-            Route::get('banner/changeStatus', 'BannerController@changeStatus');
-            Route::resource('banners', 'BannerController')->except('show');
-            Route::get('product_review/changeStatus', 'ProductReviewController@changeStatus');
-            Route::resource('product_review', 'ProductReviewController')->except('create', 'store');
-            /* faq routes */
-            Route::get('faq_category/changeStatus', 'FaqCategoryController@changeStatus');
-            Route::resource('faq_category', 'FaqCategoryController')->except('show');
-            Route::get('faq_subcategory/changeStatus', 'FaqSubCategoryController@changeStatus');
-            Route::resource('faq_subcategory', 'FaqSubCategoryController')->except('show');
-            Route::get('faq_contents/changeStatus', 'FaqController@changeStatus');
-            Route::resource('faq_content', 'FaqController');
-            /* report routes */
-            Route::get('stock_report_list', 'ReportController@stockReportList')->name('stock_report.list');
-            Route::get('stock_report', 'ReportController@stockReport')->name('stock_report');
-            Route::get('seller_report', 'ReportController@sellerReport')->name('seller_report');
-            Route::get('seller_report_list', 'ReportController@sellerReportList')->name('seller_report.list');
-            Route::get('customer_report', 'ReportController@customerReport')->name('customer_report');
-            Route::get('customer_report_list', 'ReportController@customerReportList')->name('customer_report.list');
-            /* website setting routes */
-            Route::get('banner/changeStatus', 'BannerController@changeStatus');
-            Route::get('website_setting/header', 'WebsiteSettingController@header')->name('website_setting.header');
-            Route::get('website_setting/changeStatus', 'WebsiteSettingController@changeStatus');
-            Route::post('website_setting/upload_logo', 'WebsiteSettingController@uploadLogo');
-            Route::get('website_setting/page_list', 'WebsiteSettingController@pageList')->name('website_setting.page.list');
-            Route::get('website_setting/pages', 'WebsiteSettingController@pages')->name('website_setting.pages');
-            Route::get('website_setting/pages/{id}/edit', 'WebsiteSettingController@pageEdit')->name('website_setting.pages.edit');
-            Route::put('website_setting/pages/{id}', 'WebsiteSettingController@pageUpdate')->name('website_setting.pages.update');
-            Route::get('website_setting/changeMenuStatus', 'WebsiteSettingController@changeMenuStatus');
-            Route::get('website_setting/appearance', 'WebsiteSettingController@appearance')->name('website_setting.appearance');
-            Route::resource('website_setting/announcements', AnnouncementsController::class, ['names' => 'announcements']);
-            Route::get('announcements/changeStatus', 'AnnouncementsController@changeStatus');
-            Route::put('website_setting/appearance/{id}', 'WebsiteSettingController@appearanceUpdate')->name('website_setting.appearance.update');
-            Route::resource('payment_gateway', PaymentGatewayController::class)->except(['create','store','show','destroy']);
-            Route::resource('website_setting/currency', CurrencyController::class, ['names' => 'currency']);
-            Route::get('currency/changeStatus', 'CurrencyController@changeStatus');
-        });
+        /* faq routes */
+        Route::get('faq_category/changeStatus', 'FaqCategoryController@changeStatus');
+        Route::resource('faq_category', 'FaqCategoryController')->except('show');
+        Route::get('faq_subcategory/changeStatus', 'FaqSubCategoryController@changeStatus');
+        Route::resource('faq_subcategory', 'FaqSubCategoryController')->except('show');
+        Route::get('faq_contents/changeStatus', 'FaqController@changeStatus');
+        Route::resource('faq_content', 'FaqController');
+        
+        /* report routes */
+        Route::get('stock_report_list', 'ReportController@stockReportList')->name('stock_report.list');
+        Route::get('stock_report', 'ReportController@stockReport')->name('stock_report');
+        Route::get('seller_report', 'ReportController@sellerReport')->name('seller_report');
+        Route::get('seller_report_list', 'ReportController@sellerReportList')->name('seller_report.list');
+        Route::get('customer_report', 'ReportController@customerReport')->name('customer_report');
+        Route::get('customer_report_list', 'ReportController@customerReportList')->name('customer_report.list');
+
+        /* website setting routes */
+        Route::get('banner/changeStatus', 'BannerController@changeStatus');
+        Route::get('website_setting/header', 'WebsiteSettingController@header')->name('website_setting.header');
+        Route::get('website_setting/changeStatus', 'WebsiteSettingController@changeStatus');
+        Route::post('website_setting/upload_logo', 'WebsiteSettingController@uploadLogo');
+        Route::get('website_setting/page_list', 'WebsiteSettingController@pageList')->name('website_setting.page.list');
+        Route::get('website_setting/pages', 'WebsiteSettingController@pages')->name('website_setting.pages');
+        Route::get('website_setting/pages/{id}/edit', 'WebsiteSettingController@pageEdit')->name('website_setting.pages.edit');
+        Route::put('website_setting/pages/{id}', 'WebsiteSettingController@pageUpdate')->name('website_setting.pages.update');
+        Route::get('website_setting/changeMenuStatus', 'WebsiteSettingController@changeMenuStatus');
+        Route::get('website_setting/appearance', 'WebsiteSettingController@appearance')->name('website_setting.appearance');
+        Route::resource('website_setting/announcements', AnnouncementsController::class, ['names' => 'announcements']);
+        Route::get('announcements/changeStatus', 'AnnouncementsController@changeStatus');
+        Route::put('website_setting/appearance/{id}', 'WebsiteSettingController@appearanceUpdate')->name('website_setting.appearance.update');
+        Route::resource('payment_gateway', PaymentGatewayController::class)->except(['create','store','show','destroy']);
+        Route::resource('website_setting/currency', CurrencyController::class, ['names' => 'currency']);
+        Route::get('currency/changeStatus', 'CurrencyController@changeStatus');
+
+
+        // Route::group(['middleware' => ['check_permission']], function () {
+        // });
     });
 });
 /* seller route */
