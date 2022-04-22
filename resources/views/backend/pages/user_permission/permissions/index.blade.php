@@ -22,7 +22,7 @@
                         <table id="mDataTable" class="table p-table">
                             <thead>
                             <tr>
-                                <th scope="col">{{ __('Id') }}</th>
+                                <th scope="col">{{ __('Serial') }}</th>
                                 <th scope="col">{{ __('Name') }}</th>
                                 <th scope="col">{{ __('Guard Name') }}</th>
                                 <th scope="col">{{ __('Action') }}</th>

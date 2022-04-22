@@ -19,7 +19,7 @@
                             @endif
                         </div>
                     </div>
-                    @if(auth()->user()->can('list_users') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('browse_users') || auth()->user()->hasRole('super-admin'))
                     <div class="content-table">
                         <table id="mDataTable" class="table p-table">
                             <thead>

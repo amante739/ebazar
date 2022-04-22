@@ -53,7 +53,7 @@
                     <button type="submit" class="btn login-btn">{{__('Login')}}</button>
                 </form>
                 <!-- <div class="button-group ">
-                    <a href="#" class="btn login-btn" onclick="fillup('superadmin@maantheme.com','superadmin22')">{{__('Super Admin')}}</a>
+                    <a href="#" class="btn login-btn" onclick="fillup('superadmin@gmail.com','12345678')">{{__('Super Admin')}}</a>
                     <a href="#" class="btn login-btn" onclick="fillup('view@view.com','12345678')">{{__('Admin')}}</a>
                     <a href="{{url('/seller')}}" class="btn login-btn">{{__('Seller')}}</a>
                     <a href="{{url('/login')}}" class="btn login-btn">{{__('Customer')}}</a>

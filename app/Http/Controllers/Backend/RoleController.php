@@ -76,8 +76,6 @@ class RoleController extends Controller
 
         foreach ($records as $key => $record) {
 
-
-            
             if(auth()->user()->can("edit_roles") || auth()->user()->hasRole("super-admin")){
                 $edit_data = '<li>
                                 <a class="p-0 action" href="'.route('backend.roles.edit',$record->id).'">
@@ -115,7 +113,7 @@ class RoleController extends Controller
             }
 
             $data_arr[] = array(
-                "id" => $record->id,
+                "id" => $key+1,
                 "name" => $record->name,
                 "guard_name" => $record->guard_name,
                 "action" => '<ul>'.$edit_data.' '.$delete_data.'</ul>'

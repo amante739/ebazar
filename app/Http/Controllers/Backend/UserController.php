@@ -131,7 +131,7 @@ class UserController extends Controller
             }
 
             $data_arr[] = array(
-                "id" => $record->id,
+                "id" => $key+1,
                 "name" => $record->name,
                 "email" => $record->email,
                 "avatar" => $image,
