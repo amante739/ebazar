@@ -170,8 +170,7 @@
                         $("#cart-row-"+key).remove();
                         if(e.carts=='')
                         {
-                            
-// $(".checkout-btn").hide();
+                            $(".checkout-btn").hide();
                         }
                     });
                 })

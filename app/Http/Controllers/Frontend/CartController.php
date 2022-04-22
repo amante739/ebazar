@@ -102,7 +102,7 @@ class CartController extends Controller
         $subTotal = 0;
         $totalShipping = 0;
         foreach($cart as $item){
-            $subTotal += CartItem::price($item['id'],$request->get('qty'));
+            $subTotal += CartItem::price($item['id'],$item['quantity']);
             $totalShipping += CartItem::shipping($item['id'],$request->get('qty'));
         }
 
@@ -145,14 +145,14 @@ class CartController extends Controller
         $subTotal = 0;
         $totalShipping = 0;
         foreach($cart as $item){
-            $subTotal += $item['total'];
+            $subTotal += CartItem::price($item['id'],$item['quantity']);
             $totalShipping += CartItem::shipping($item['id'],$item['quantity']);
         }
 
         Cookie::queue(Cookie::make('subTotal',$subTotal,120));
         Cookie::queue(Cookie::make('totalShipping',120));
 
-        return response(['status'=>'success','count'=>$count,'name'=>$product->name,'subTotal'=>$subTotal,'totalShipping'=>$totalShipping]);
+        return response(['status'=>'success','count'=>$count,'name'=>$product->name,'subTotal'=>$subTotal,'totalShipping'=>$totalShipping,'carts'=>$cart]);
     }
 
 //    public function price($id)
