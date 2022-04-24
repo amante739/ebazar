@@ -94,7 +94,7 @@ class ProductController extends Controller
             $delete_route = auth('seller')->user() ? route('seller.products.destroy', $record->id) : route('backend.products.destroy', $record->id);
             $edit_button = '';
             $delete_button = '';
-            if(auth()->user()->can('edit_products') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('edit-products') || auth()->user()->hasRole('super-admin'))
                 $edit_button = '<li>
                                     <a class="p-0 action" href="' . $edit_route . '">
                                         <button title="Edit">
@@ -106,7 +106,7 @@ class ProductController extends Controller
                                         </button>
                                     </a>
                                 </li>';
-            if(auth()->user()->can('delete_products') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-products') || auth()->user()->hasRole('super-admin'))
                 $delete_button = '<li>
                                             <form user="deleteForm" method="POST"
                                                     action="' . $delete_route . '">

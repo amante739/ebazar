@@ -10,11 +10,11 @@
             <li class="@if(Request::is('/settings','/settings/*'))active @endif"><a
                     href="{{url('/settings')}}"><i class="fa fa-cogs text-danger"></i> {{ __('General Setting') }}</a></li>
         @endif
-        @if(auth()->user()->can('browse_users') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('access-users') || auth()->user()->hasRole('super-admin'))
             <li class="@if(Request::is('/users','/users/*'))active @endif"><a href="{{url('/users')}}"><i
                         class="fa fa-users text-aqua"></i> {{ __('Users') }}</a></li>
         @endif
-        @if(auth()->user()->can('browse_roles') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('access-roles') || auth()->user()->hasRole('super-admin'))
             <li class="@if(Request::is('/roles','/roles/*'))active @endif"><a href="{{url('admin/roles')}}"><i
                         class="fa fa-key text-red"></i> {{ __('Roles') }}</a></li>
         @endif

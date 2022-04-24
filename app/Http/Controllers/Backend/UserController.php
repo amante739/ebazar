@@ -94,7 +94,7 @@ class UserController extends Controller
                 }
             }
 
-            if(auth()->user()->can("edit_users") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("edit-users") || auth()->user()->hasRole("super-admin")){
                 $edit_data = '<li>
                                 <a class="p-0 action" href="' . route('backend.users.edit',$record->id) . '">
                                     <button title="Edit">
@@ -110,7 +110,7 @@ class UserController extends Controller
                 $edit_data = '';
             }
 
-            if(auth()->user()->can("delete_users") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("delete-users") || auth()->user()->hasRole("super-admin")){
                 $delete_data = '<li>
                                     <form user="deleteForm" method="POST"
                                             action="' . route('backend.users.destroy', $record->id) . '">

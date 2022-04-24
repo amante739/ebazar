@@ -84,19 +84,19 @@ class CustomerController extends Controller
                 $gender = 'Other';
 
             
-            if(auth()->user()->can("active_customers") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("active-customers") || auth()->user()->hasRole("super-admin")){
                 $active_data = '<div class="form-switch"><input class="form-check-input status" type="checkbox"  data-id="' . $record->id . '"' . $checked . '></div>';
             }else{
                 $active_data = '';
             }
 
-            if(auth()->user()->can("suspend_customers") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("suspend-customers") || auth()->user()->hasRole("super-admin")){
                 $suspend_data = '<div class="form-switch"><input class="form-check-input suspend" type="checkbox"  data-id="' . $record->id . '"' . $suspend . '></div>';
             }else{
                 $suspend_data = '';
             }
 
-            if(auth()->user()->can("edit_customers") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("edit-customers") || auth()->user()->hasRole("super-admin")){
                 $edit_data = '<li>
                                     <a class="p-0 action" href="' . route('backend.customers.edit', $record->id) . '">
                                         <button title="Edit">
@@ -111,7 +111,7 @@ class CustomerController extends Controller
             }else{
                 $edit_data = '';
             }
-            if(auth()->user()->can("delete_customers") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("delete-customers") || auth()->user()->hasRole("super-admin")){
                 $delete_data = '<li>
                                     <form user="deleteForm" method="POST" action="' . route('backend.customers.destroy', $record->id) . '">
                                         ' . csrf_field() . method_field("DELETE") . '
@@ -128,7 +128,7 @@ class CustomerController extends Controller
             }else{
                 $delete_data = '';
             }
-            if(auth()->user()->can("email_customers") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("email-customers") || auth()->user()->hasRole("super-admin")){
                 $email_data = '<li>
                                     <button title="Message" data-bs-toggle="modal" class="message-btn" data-bs-target="#exampleModal"data-recipient="' . $record->email . '" data-recipient_name="' . $record->full_name() . '">
                                         <svg viewBox="0 0 12 9" xmlns="http://www.w3.org/2000/svg">

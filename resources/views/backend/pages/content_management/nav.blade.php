@@ -7,7 +7,7 @@
         $banner_index_route = auth('seller')->user() ? route('seller.banners.index') : route('backend.banners.index');
         $product_review_index_route = auth('seller')->user() ? route('seller.product_review.index') : route('backend.product_review.index');
     @endphp
-    @if(auth()->user()->can('browse_banners') || auth()->user()->hasRole('super-admin'))
+    @if(auth()->user()->can('banners-list') || auth()->user()->hasRole('super-admin'))
         <button class="nav-link @if(Request::is('admin/banners'))active @endif" id="banner-tab" data-bs-toggle="tab"
                 data-bs-target="#banner" type="button"
                 role="tab" aria-controls="banner" aria-selected="true"

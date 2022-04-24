@@ -9,6 +9,7 @@
                     <h4>{{__('Banner Information')}}</h4>
                 </div>
                 <div class="container">
+                    @if(auth()->user()->can('create-banners') || auth()->user()->hasRole('super-admin'))
                     <form id="bannerForm" method="post" action="@auth('admin'){{route('backend.banners.store')}}@elseauth('seller'){{route('seller.banners.store')}}@endauth" enctype="multipart/form-data" class="add-brand-form">
                         @csrf()
                         @include('backend.pages.content_management.banners.form')
@@ -18,6 +19,7 @@
                             </div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

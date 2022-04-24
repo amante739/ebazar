@@ -10,7 +10,7 @@
                     <h4>{{__('Customer Information')}}</h4>
                 </div>
                 <div class="container">
-                    @if(auth()->user()->can('edit_customers') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('edit-customers') || auth()->user()->hasRole('super-admin'))
                     <form id="customersForm" class="add-brand-form" action="{{route('backend.customers.update',$customer->id)}}" method="post"
                           enctype="multipart/form-data">
                         @csrf

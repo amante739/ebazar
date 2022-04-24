@@ -9,7 +9,7 @@
     <!-- Side Manu Start -->
     <div class="side-bar-manu">
         <ul>
-            @if(auth()->user()->can('browse_dashboard') || auth()->user()->hasRole('super-admin'))
+            @if(auth()->user()->can('access-dashboard') || auth()->user()->hasRole('super-admin'))
                 <li>
                     <a class="@if(Request::is('seller'))active @endif"
                        href="{{route('seller.home')}}">
@@ -25,7 +25,7 @@
             @endif
         <!--start orders -->
             @if(Module::has('OrderManagement') && Module::find('OrderManagement')->isEnabled())
-                @if(auth()->user()->can('browse_order_management') || auth()->user()->hasRole('super-admin'))
+                @if(auth()->user()->can('access-order-management') || auth()->user()->hasRole('super-admin'))
                     <li class="@if(Request::is('seller/*_orders','seller/orders','seller/orders/*')) active  @endif ">
                         <a href="javascript:void(0)">
                     <span class="icon">
@@ -62,7 +62,7 @@
                     </span>
                         </a>
                         <ul>
-                            @if(auth()->user()->can('browse_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/orders'))active @endif"
                                        href="{{route('seller.orders.index')}}">
@@ -70,14 +70,14 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_pending_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('pending-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li><a class="@if(Request::is('seller/pending_orders'))active @endif"
                                        href="{{route('seller.pending_orders')}}">
                                         {{ __('Pending') }}
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_confirmed_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('confimed-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/confirmed_orders'))active @endif"
                                        href="{{route('seller.confirmed_orders')}}">
@@ -85,7 +85,7 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_processing_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('processing-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/processing_orders'))active @endif"
                                        href="{{route('seller.processing_orders')}}">
@@ -93,7 +93,7 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_picked_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('picked-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/picked_orders'))active @endif"
                                        href="{{route('seller.picked_orders')}}">
@@ -101,20 +101,20 @@
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_shipped_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('shipped-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li><a class="@if(Request::is('seller/shipped_orders'))active @endif"
                                        href="{{route('seller.shipped_orders')}}">
                                         {{ __('Shipped') }}
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_delivered_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('delivered-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li><a class="@if(Request::is('seller/delivered_orders'))active @endif"
                                        href="{{route('seller.delivered_orders')}}">
                                         {{ __('Delivered') }} </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_cancelled_orders') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('cancelled-orders-list') || auth()->user()->hasRole('super-admin'))
                                 <li><a class="@if(Request::is('seller/cancelled_orders'))active @endif"
                                        href="{{route('seller.cancelled_orders')}}">
                                         {{ __('Cancelled') }} </a>
@@ -127,7 +127,7 @@
         <!--end orders -->
                 <!--start Product Management -->
             @if(Module::has('ProductManagement') && Module::find('ProductManagement')->isEnabled())
-                @if(auth()->user()->can('browse_product_management') || auth()->user()->hasRole('super-admin'))
+                @if(auth()->user()->can('access-product-management') || @if(auth()->user()->can('access-categories') || @if(auth()->user()->can('access-brands') || auth()->user()->hasRole('super-admin'))
                     <li class="@if(Request::is('seller/products', 'seller/products/*','seller/categories','seller/categories/*','seller/brands','seller/brands/*')) active  @endif">
                         <a href="#">
                     <span class="icon">
@@ -153,38 +153,38 @@
                         </a>
                         <!-- Sub Manu Start -->
                         <ul>
-                            @if(auth()->user()->can('browse_products') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('products-list') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/products','seller/products/*/edit'))active @endif"
                                        href="{{route('seller.products.index')}}">{{ __('All Product') }}
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('create_products') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('create-products') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/products/create'))active @endif"
                                        href="{{route('seller.products.create')}}">{{__('Add Product')}}</a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_categories') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('access-categories') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/categories','seller/categories/*/edit'))active @endif"
                                        href="{{route('seller.categories.index')}}"> {{ __('Category') }} </a>
                                 </li>
                             @endif
 
-                            @if(auth()->user()->can('create_categories') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('create-categories') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/categories/create'))active @endif"
                                        href="{{route('seller.categories.create')}}"> {{ __('Add Category') }} </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('browse_brands') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('access-brands') || auth()->user()->hasRole('super-admin'))
                                 <li><a class="@if(Request::is('seller/brands','seller/brands/*/edit'))active @endif"
                                        href="{{route('seller.brands.index')}}"> {{ __('Brand') }} </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('create_brands') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('create-brands') || auth()->user()->hasRole('super-admin'))
                                 <li><a class="@if(Request::is('seller/brands/create'))active @endif"
                                        href="{{route('seller.brands.create')}}"> {{ __('Add Brand') }} </a>
                                 </li>
@@ -196,7 +196,7 @@
             @endif
             <!--start Promotional Product Management -->
             @if(Module::has('PromotionManagement') && Module::find('PromotionManagement')->isEnabled())
-                @if(auth()->user()->can('browse_promotion_management') || auth()->user()->hasRole('super-admin'))
+                @if(auth()->user()->can('access-promotion-management') || auth()->user()->hasRole('super-admin'))
                     <li class="@if(Request::is('seller/promotional_products','seller/promotional_products/*')) active  @endif">
                         <a href="#">
                     <span class="icon">
@@ -222,14 +222,14 @@
                         </a>
                         <!-- Sub Manu Start -->
                         <ul>
-                            @if(auth()->user()->can('browse_promotional_products') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('promotional-products-list') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/promotional_products'))active @endif"
                                        href="{{route('seller.promotional_products.index')}}">{{ __('Promotional Product') }}
                                     </a>
                                 </li>
                             @endif
-                            @if(auth()->user()->can('create_promotional_products') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('create-promotional-products') || auth()->user()->hasRole('super-admin'))
                                 <li>
                                     <a class="@if(Request::is('seller/promotional_products/create'))active @endif"
                                        href="{{route('seller.promotional_products.create')}}"> {{ __('Add Products') }} </a>
@@ -240,7 +240,7 @@
                     </li>
                 @endif
             @endif
-            @if(auth()->user()->can('browse_content_management') || auth()->user()->hasRole('super-admin'))
+            @if(auth()->user()->can('access-content-management') || auth()->user()->hasRole('super-admin'))
                 <li class="@if(Request::is('seller/banners','seller/banners/*','seller/product_review','seller/product_review/*')) active  @endif">
                     <a href="#"><span class="icon"><svg viewBox="0 0 23 21" xmlns="http://www.w3.org/2000/svg"><path
                                                         d="M19.013 10.4602H20.3182V3.9342H15.75V5.23941H19.013V10.4602Z"/><path
@@ -271,7 +271,7 @@
                     </ul>
                     <!-- Sub Manu End -->
                 </li>@endif
-            @if(auth()->user()->can('browse_reports') || auth()->user()->hasRole('super-admin'))
+            @if(auth()->user()->can('access-reports') || auth()->user()->hasRole('super-admin'))
                 <li class="@if(Request::is('seller/stock_report','seller/seller_report','seller/customer_report')) active  @endif">
                     <a href="#"><span class="icon"><svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <rect y="11.4258" width="5.71281" height="8.56921" rx="1"/>

@@ -12,14 +12,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
-                            @if(auth()->user()->can('create_users') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('create-users') || auth()->user()->hasRole('super-admin'))
                             <a href="{{route('backend.users.create')}}" methods="get" class="float-end">
                                 <button class="btn btn-warning">{{ __('Add User') }}</button>
                             </a>
                             @endif
                         </div>
                     </div>
-                    @if(auth()->user()->can('browse_users') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('users-list') || auth()->user()->hasRole('super-admin'))
                     <div class="content-table">
                         <table id="mDataTable" class="table p-table">
                             <thead>

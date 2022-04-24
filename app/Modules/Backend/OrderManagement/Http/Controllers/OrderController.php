@@ -91,7 +91,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"
@@ -201,7 +201,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"
@@ -310,7 +310,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"
@@ -416,7 +416,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"
@@ -523,7 +523,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"
@@ -633,7 +633,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"
@@ -740,7 +740,7 @@ class OrderController extends Controller
             $show_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.show', $record->id);
             $delete_route = auth('seller')->user() ? route('seller.orders.show', $record->id) : route('backend.orders.destroy', $record->id);
             $action = '';
-            if(auth()->user()->can('delete_orders') || auth()->user()->hasRole('super-admin'))
+            if(auth()->user()->can('delete-orders') || auth()->user()->hasRole('super-admin'))
                 $action =      '<ul>
                                 <li>
                                      <form user="deleteForm" method="POST"

@@ -9,6 +9,7 @@
                     <h4>{{__('Banner Information')}}</h4>
                 </div>
                 <div class="container">
+                    @if(auth()->user()->can('edit-banners') || auth()->user()->hasRole('super-admin'))
                     <form id="bannerForm" method="post" action="@auth('admin'){{route('backend.banners.update',$banner->id)}}@elseauth('seller'){{route('seller.banners.update',$banner->id)}}@endauth" enctype="multipart/form-data" class="add-brand-form">
                         @csrf()
                         @method('PUT')
@@ -19,6 +20,7 @@
                             </div>
                         </div>
                     </form>
+                    @endif
                 </div>
             </div>
         </div>

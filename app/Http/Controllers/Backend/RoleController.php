@@ -76,7 +76,7 @@ class RoleController extends Controller
 
         foreach ($records as $key => $record) {
 
-            if(auth()->user()->can("edit_roles") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("edit-roles") || auth()->user()->hasRole("super-admin")){
                 $edit_data = '<li>
                                 <a class="p-0 action" href="'.route('backend.roles.edit',$record->id).'">
                                     <button title="Edit">
@@ -92,7 +92,7 @@ class RoleController extends Controller
                 $edit_data = '';
             }
 
-            if(auth()->user()->can("delete_roles") || auth()->user()->hasRole("super-admin")){
+            if(auth()->user()->can("delete-roles") || auth()->user()->hasRole("super-admin")){
                 $delete_data = '<li>
                                     <form user="deleteForm" method="POST"
                                             action="' . route('backend.roles.destroy', $record->id) . '">

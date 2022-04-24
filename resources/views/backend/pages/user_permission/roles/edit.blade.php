@@ -9,7 +9,7 @@
                     <h4>{{__('Role Information')}}</h4>
                 </div>
                 <div class="container">
-                    @if(auth()->user()->can('edit_roles') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('edit-roles') || auth()->user()->hasRole('super-admin'))
                     <form id="rolesForm" method="post" action="{{route('backend.roles.update',$role->id)}}" enctype="multipart/form-data" class="add-brand-form">
                         @csrf()
                         @method('PUT')

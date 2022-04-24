@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="float-md-end">
-                                    @if(auth()->user()->can('create_banners') || auth()->user()->hasRole('super-admin'))
+                                    @if(auth()->user()->can('create-banners') || auth()->user()->hasRole('super-admin'))
                                     <a href="@auth('admin'){{route('backend.banners.create')}}@elseauth('seller'){{route('seller.banners.create')}}@endauth">
                                         <button class="btn btn-warning pull-right"> {{ __('Add Banner') }}</button>
                                     </a>

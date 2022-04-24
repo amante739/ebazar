@@ -12,7 +12,7 @@
             $brand_index_route = auth('seller')->user() ? route('seller.brands.index') : route('backend.brands.index');
             $brand_create_route = auth('seller')->user() ? route('seller.brands.create') : route('backend.brands.create');
         @endphp
-        @if(auth()->user()->can('browse_products') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('products-list') || auth()->user()->hasRole('super-admin'))
             <button class="nav-link @if(Request::is('admin/products','seller/products'))active @endif"
                     id="all-product-tab"
                     data-bs-toggle="tab"
@@ -22,7 +22,7 @@
                 {{__('All Product')}}
             </button>
         @endif
-        @if(auth()->user()->can('create_products') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('create-products') || auth()->user()->hasRole('super-admin'))
             <button class="nav-link @if(Request::is('admin/products/create','seller/products/create'))active @endif"
                     id="add-product-tab"
                     data-bs-toggle="tab" data-bs-target="#add-product"
@@ -30,7 +30,7 @@
                     @if(url()->full()!=$product_create_route) onclick="location.href='{{$product_create_route}}'" @endif>{{__('Add Product')}}
             </button>
         @endif
-        @if(auth()->user()->can('browse_categories') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('access-categories') || auth()->user()->hasRole('super-admin'))
             <button class="nav-link @if(Request::is('admin/categories','seller/categories'))active @endif"
                     id="category-tab"
                     data-bs-toggle="tab"
@@ -39,7 +39,7 @@
                     @if(url()->full()!=$category_index_route) onclick="location.href='{{$category_index_route}}'" @endif>{{__('Category')}}
             </button>
         @endif
-        @if(auth()->user()->can('create_categories') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('create-categories') || auth()->user()->hasRole('super-admin'))
             <button
                 class="nav-link @if(Request::is('admin/categories/create','seller/categories/create'))active @endif"
                 id="add-category-tab"
@@ -48,7 +48,7 @@
                 @if(url()->full()!=$category_create_route) onclick="location.href='{{$category_create_route}}'" @endif>{{__('Add Category')}}
             </button>
         @endif
-        @if(auth()->user()->can('browse_brands') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('access-brands') || auth()->user()->hasRole('super-admin'))
             <button class="nav-link @if(Request::is('admin/brands','seller/brands'))active @endif" id="brand-tab"
                     data-bs-toggle="tab"
                     data-bs-target="#brand" type="button"
@@ -56,7 +56,7 @@
                     @if(url()->full()!=$brand_index_route) onclick="location.href='{{$brand_index_route}}'" @endif>{{__('Brand')}}
             </button>
         @endif
-        @if(auth()->user()->can('create_brands') || auth()->user()->hasRole('super-admin'))
+        @if(auth()->user()->can('create-brands') || auth()->user()->hasRole('super-admin'))
             <button class="nav-link @if(Request::is('admin/brands/create','seller/brands/create'))active @endif"
                     id="add-brand-tab"
                     data-bs-toggle="tab"

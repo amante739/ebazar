@@ -59,7 +59,7 @@
 
                         @endforeach
                     </select>
-                    @if(auth()->user()->can('create_categories') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('create-categories') || auth()->user()->hasRole('super-admin'))
                     <a class="btn-clone text-center" type="button" href="{{route('backend.categories.create')}}">+</a>
                     @endif
                     @error('category_id'))
@@ -100,7 +100,7 @@
                                     @if($brand->id==$product->brand_id|| $brand->id==old('brand_id')) selected @endif >{{$brand->name}}</option>
                         @endforeach
                     </select>
-                    @if(auth()->user()->can('create_brands') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('create-brands') || auth()->user()->hasRole('super-admin'))
                     <button class="btn-clone">+</button>
                     <a class="btn-clone text-center" type="button" href="{{route('backend.brands.create')}}">+</a>
                     @endif

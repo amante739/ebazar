@@ -10,7 +10,7 @@
                     <h4>{{__('Promotion Information')}}</h4>
                 </div>
                 <div class="container">
-                    @if(auth()->user()->can('edit_promotional_products') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('edit-promotional-products') || auth()->user()->hasRole('super-admin'))
                     <form class="add-brand-form" id="promo_productsForm" action="@auth('admin'){{route('backend.promotional_products.update',$promo_product->id)}}@elseauth('seller'){{route('seller.promotional_products.update',$promo_product->id)}}@endauth"
                           method="post" enctype="multipart/form-data">
                         @csrf

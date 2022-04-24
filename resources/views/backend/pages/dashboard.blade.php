@@ -3,14 +3,14 @@
     <!-- header  -->
     <!-- Page Content  -->
     
-    @if(auth()->user()->can('browse_dashboard') || auth()->user()->hasRole('super-admin'))
+    @if(auth()->user()->can('access-dashboard') || auth()->user()->hasRole('super-admin'))
     <div id="content" class="maan-rightside-content">
         <div class="maan-main-content">
             <div class="maan-state-overview maan-layout-style-one">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            @if(auth()->user()->can('browse_count_box_dashboard') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('access-dashboard-count-box') || auth()->user()->hasRole('super-admin'))
                             <div class="maan-counter-wpr grid-4">
                                 <div class="maan-counter-box">
                                     <div class="maan-icon maan-radius maan-icon-clr-lightblue">
@@ -78,7 +78,7 @@
 
                     <div class="row">
                         <div class="col-xxl-7 col-xl-12">
-                            @if(auth()->user()->can('browse_statistic_dashboard') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('access-dashboard-statistic') || auth()->user()->hasRole('super-admin'))
                             <div class="maan-content-wpr">
                                 <div class="maan-card-header maan-chart-radius">
                                     <h3 class="maan-chart-title">{{__('Monthly Sale Status')}}</h3>
@@ -98,8 +98,8 @@
                             <div class="row">
                                 <div class="col-xl-12">
                                     <div class="maan-content-wrapper  pyechart-xl grid-2">
+                                        @if(auth()->user()->can('access-dashboard-statistic') || auth()->user()->hasRole('super-admin'))
                                         <div class="maan-content-wpr">
-                                            @if(auth()->user()->can('browse_statistic_dashboard') || auth()->user()->hasRole('super-admin'))
                                             <div class="maan-card-header maan-appoint-header-bg3 maan-chart-radius">
                                                 <h3 class="maan-chart-title">{{__('Yearly Status by Category')}}</h3>
                                                 <div class="card-dropdown">
@@ -119,9 +119,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            @endif
                                         </div>
-                                        @if(auth()->user()->can('browse_customer_dashboard') || auth()->user()->hasRole('super-admin'))
+                                        @endif
+                                        
+                                        @if(auth()->user()->can('access-dashboard-customer-list') || auth()->user()->hasRole('super-admin'))
                                         <div class="maan-content-wpr dashboard-topnew-customer">
                                             <div
                                                 class="maan-card-header maan-appoint-header-bg2 maan-chart-radius text-center">
@@ -160,7 +161,7 @@
                             </div>
                         </div>
 
-                        @if(auth()->user()->can('browse_order_dashboard') || auth()->user()->hasRole('super-admin'))
+                        @if(auth()->user()->can('access-dashboard-order') || auth()->user()->hasRole('super-admin'))
                         <div class="col-xxl-5 col-xl-12">
                             <div class="maan-content-wpr">
                                 <div class="maan-card-header maan-appoint-header-bg  maan-chart-radius">
@@ -184,9 +185,10 @@
                             </div>
                         </div>
                         @endif
+
                         @auth('admin')
                         <div class="row">
-                            @if(auth()->user()->can('browse_best_selling_dashboard') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('access-dashboard-best-selling-list') || auth()->user()->hasRole('super-admin'))
                             <div class="col-lg-6">
                                 <div class="maan-content-wpr dashbest-selling-product">
                                     <div class="maan-card-header maan-appoint-header-bg  maan-chart-radius">
@@ -204,7 +206,7 @@
                                 </div>
                             </div>
                             @endif
-                            @if(auth()->user()->can('browse_best_customer_dashboard') || auth()->user()->hasRole('super-admin'))
+                            @if(auth()->user()->can('access-dashboard-best-customer-list') || auth()->user()->hasRole('super-admin'))
                             <div class="col-lg-6">
                                 <div class="maan-content-wpr dashboard-topnew-customer">
                                     <div class="maan-card-header maan-appoint-header-bg3  maan-chart-radius">

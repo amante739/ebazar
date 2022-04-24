@@ -9,7 +9,7 @@
                     <h4>{{__('User Information')}}</h4>
                 </div>
                 <div class="container">
-                    @if(auth()->user()->can('create_users') || auth()->user()->hasRole('super-admin'))
+                    @if(auth()->user()->can('create-users') || auth()->user()->hasRole('super-admin'))
                     <form id="usersForm" method="post" action="{{route('backend.users.store')}}" enctype="multipart/form-data" class="add-brand-form">
                         @csrf()
                         @include('backend.pages.user_permission.users.form')
